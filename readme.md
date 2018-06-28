@@ -1,10 +1,10 @@
 # flask_fensor_api
-## 基于t2t的多语言翻译api框架
+## 基于t2t的多语言翻译api框架
 
-将训练好的t2t模型加载到内存并开启restful_api
+将训练好的t2t模型加载到内存并开启restful_api
 ## 准备
 - python2, tensorflow, tensor2tensor
-- [安装配置tensorflow-serving](https://www.tensorflow.org/serving/setup#installing_the_modelserver)
+- [安装配置tensorflow-serving](https://www.tensorflow.org/serving/setup#installing_the_modelserver)
 - 将t2t模型导出，与训练目录下的`\self_script`和`\self_data`上传服务器指定目录(`\t2t`)
     ```
     t2t-exporter \
