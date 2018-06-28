@@ -8,9 +8,11 @@ from tensor2tensor.serving import serving_utils
 from tensor2tensor.utils import registry
 from tensor2tensor.utils import usr_dir
 from flask import Flask, request
+from flask_cors import CORS
 import tensorflow as tf
 
 app = Flask(__name__)
+CORS(app)
 app.config.from_object('config')
 servable_name_config = app.config['SERVABLE_NAME']
 server_config = app.config['SERVER']
