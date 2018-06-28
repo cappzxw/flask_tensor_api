@@ -3,9 +3,9 @@
 
 将训练好的t2t模型加载到内存并开启restful_api
 ## 准备
-- python2, tensorflow, tensor2tensor
+- python2, tensorflow, tensor2tensor, flask-cors
 - [安装配置tensorflow-serving](https://www.tensorflow.org/serving/setup#installing_the_modelserver)
-- 将t2t模型导出，与训练目录下的`\self_script`和`\self_data`上传服务器指定目录(`\t2t`)
+- 将t2t模型导出，与训练目录下的`/self_script`和`/self_data`上传服务器指定目录(`/t2t`)
     ```
     t2t-exporter \
     --t2t_usr_dir=self_script \
@@ -25,7 +25,7 @@
 `install tensorflow-serving-api`
 
 ## 开启api
-- 下载flask_tensor_api到指定目录(`\t2t`)
+- 下载flask_tensor_api到指定目录(`/t2t`)
 - 编辑config.py文件
     ```
     # server configuration
