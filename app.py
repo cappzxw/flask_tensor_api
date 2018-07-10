@@ -22,6 +22,7 @@ problem_config = app.config['PROBLEM']
 data_dir_config = app.config['DATA_DIR']
 port_config = app.config['SERVER_PORT']
 language_config = app.config['LANGUAGE']
+lang_list = {}
 
 
 class Lang:
@@ -48,6 +49,20 @@ class Lang:
         return problem
 
 
+def initfn():
+    for i in range(len(language_config)):
+        name = servable_name_config[i]
+        usrdir = usr_dir_config[i]
+        datadir = data_dir_config[i]
+        pro = problem_config[i]
+        language = language_config[i]
+        lang = Lang(name, usrdir, datadir, pro)
+        lang_list[language] = lang
+
+
+initfn()
+
+
 @ app.route('/translate/mn-zh', methods=['POST'])
 def translate_mn():
     inputs = request.form['content']
@@ -67,17 +82,4 @@ def translate_uy():
 
 
 if __name__ == '__main__':
-    lang_list = {}
-
-    for i in range(len(language_config)):
-        name = servable_name_config[i]
-        usrdir = usr_dir_config[i]
-        datadir = data_dir_config[i]
-        pro = problem_config[i]
-        language = language_config[i]
-        lang = Lang(name, usrdir, datadir, pro)
-        lang_list[language] = lang
-
-    app.run(
-        port=port_config
-    )
+    app.run()
