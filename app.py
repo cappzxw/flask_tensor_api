@@ -13,7 +13,7 @@ import tensorflow as tf
 
 app = Flask(__name__)
 CORS(app)
-app.config.from_object('config')
+app.config.from_object('conf')
 servable_name_config = app.config['SERVABLE_NAME']
 server_config = app.config['SERVER']
 listen_port_config = app.config['LISTEN_PORT']
@@ -63,19 +63,11 @@ def initfn():
 initfn()
 
 
-@ app.route('/translate/mn-zh', methods=['POST'])
-def translate_mn():
+@ app.route('/translate', methods=['POST'])
+def translate():
+    source = request.form['source']
     inputs = request.form['content']
-    outputs = serving_utils.predict([inputs], lang_list['mn'].problem, lang_list['mn'].request)
-    outputs, = outputs
-    output, score = outputs
-    return output[0: output.find('EOS')-1]
-
-
-@ app.route('/translate/uy-zh', methods=['POST'])
-def translate_uy():
-    inputs = request.form['content']
-    outputs = serving_utils.predict([inputs], lang_list['uy'].problem, lang_list['uy'].request)
+    outputs = serving_utils.predict([inputs], lang_list[source].problem, lang_list[source].request)
     outputs, = outputs
     output, score = outputs
     return output[0: output.find('EOS')-1]
